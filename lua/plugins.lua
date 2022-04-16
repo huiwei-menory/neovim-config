@@ -154,6 +154,76 @@ return require("packer").startup(function(use)
 	-- S+ S-
 	use("terryma/vim-expand-region")
 
+	-- 模糊查找
+	-- https://github.com/nvim-telescope/telescope.nvim
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+		config = function()
+			-- This will load fzy_native and have it override the default file sorter
+			-- require("telescope").load_extension("fzy_native")
+
+			local actions = require("telescope.actions")
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							-- To disable a keymap, put [map] = false
+							-- So, to not map "<C-n>", just put
+							["<C-n>"] = false,
+							["<C-p>"] = false,
+
+							["<C-j>"] = actions.move_selection_next,
+							["<C-k>"] = actions.move_selection_previous,
+						},
+					},
+				},
+			})
+			vim.api.nvim_set_keymap(
+				"n",
+				"gr",
+				'<cmd>lua require ("telescope.builtin").lsp_references()<cr>',
+				{ silent = true }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader><leader><leader>",
+				'<cmd>lua require ("telescope.builtin").live_grep()<cr>',
+				{}
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader><leader>",
+				'<cmd>lua require ("telescope.builtin").find_files()<cr>',
+				{}
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>d",
+				'<cmd>lua require ("telescope.builtin").lsp_definitions()<cr>',
+				{ silent = true }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>a",
+				'<cmd>lua require ("telescope.builtin").lsp_code_actions()<cr>',
+				{ silent = true }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>ss",
+				'<cmd>lua require ("telescope.builtin").git_status()<cr>',
+				{ silent = true }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>bb",
+				'<cmd>lua require ("telescope.builtin").git_branches()<cr>',
+				{ silent = true }
+			)
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
