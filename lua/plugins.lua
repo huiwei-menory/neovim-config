@@ -43,6 +43,28 @@ return require("packer").startup(function(use)
   -- https://github.com/mhinz/vim-startify
   use("mhinz/vim-startify")
 
+  -- 状态行    
+  -- https://github.com/itchyny/lightline.vim
+  use({    
+    "itchyny/lightline.vim",    
+    config = function()    
+      vim.g.lightline = {    
+        ["enable"] = { ["statusline"] = 1, ["tabline"] = 1 },    
+        -- ["colorscheme"] = "nightfox",    
+        ["active"] = {    
+          ["left"] = { { "mode", "paste" }, { "gitbranch", "readonly", "filename", "modified" } },    
+        },    
+        ["tabline"] = {    
+          ["left"] = { { "tabs" } },                                                                                                                                           
+          ["right"] = { { "close" } },    
+        },    
+        ["component_function"] = {    
+          ["gitbranch"] = "FugitiveHead",    
+        },    
+      }    
+    end,    
+  })
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
