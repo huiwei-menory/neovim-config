@@ -224,6 +224,35 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- 语法树
+	-- https://github.com/nvim-treesitter/nvim-treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"go",
+					"typescript",
+					"javascript",
+					"php",
+					"html",
+					"css",
+					"toml",
+					"yaml",
+					"vue",
+					"bash",
+					"lua",
+					"json",
+					"rust",
+				},
+				highlight = { enable = true },
+			})
+		end,
+	})
+	-- https://github.com/chr4/nginx.vim
+	use("chr4/nginx.vim")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
