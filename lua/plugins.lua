@@ -531,6 +531,39 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- markdown
+	-- https://github.com/preservim/vim-markdown
+	--use({
+	--	"plasticboy/vim-markdown",
+	--	--config = function() end,
+	--})
+	-- https://github.com/dhruvasagar/vim-table-mode
+	-- 表格自动格式化
+	-- use({
+	-- 	"dhruvasagar/vim-table-mode",
+	-- 	config = function()
+	-- 		vim.g.table_mode_corner = "|"
+	-- 		vim.g.table_mode_corner_corner = "+"
+	-- 		vim.g.table_mode_header_fillchar = "="
+	-- 		vim.g.vim_markdown_folding_disabled = 1
+	-- 		vim.g.vim_markdown_math = 1
+	-- 		vim.g.vim_markdown_frontmatter = 1 -- for YAML format
+	-- 		vim.g.vim_markdown_toml_frontmatter = 1 -- for TOML format
+	-- 		vim.g.vim_markdown_json_frontmatter = 1 -- for JSON format
+	-- 	end,
+	-- })
+	-- use({
+	-- 	"iamcco/markdown-preview.nvim",
+	-- 	run = function()
+	-- 		vim.cmd("call mkdp#util#install()")
+	-- 	end,
+	-- 	config = function()
+	-- 		vim.api.nvim_set_keymap("n", "<leader>md", "<Plug>MarkdownPreview", {})
+	-- 		vim.api.nvim_set_keymap("n", "<leader>mt", "<Plug>MarkdownPreviewToggle", {})
+	-- 		vim.api.nvim_set_keymap("n", "<M-s>", "<Plug>MarkdownPreviewStop", {})
+	-- 	end,
+	-- })
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
