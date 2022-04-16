@@ -14,6 +14,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
   print("packer_bootstrap done")
 end
 
+require("general")
+
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
