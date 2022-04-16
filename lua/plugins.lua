@@ -253,6 +253,141 @@ return require("packer").startup(function(use)
 	-- https://github.com/chr4/nginx.vim
 	use("chr4/nginx.vim")
 
+	-- lsp
+	-- https://github.com/rrethy/vim-illuminate
+	use({
+		"rrethy/vim-illuminate",
+		config = function()
+			vim.g.Illuminate_ftblacklist = { "NvimTree" }
+		end,
+	})
+	-- https://github.com/neovim/nvim-lspconfig
+	use({
+		"neovim/nvim-lspconfig",
+		config = function()
+			local lspconfig = require("lspconfig")
+			local mix_attach = function(client, bufnr)
+				require("illuminate").on_attach(client)
+				--require("completion").on_attach(client)
+				--vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+				--vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap=true, silent=true })
+				-- Set some keybinds conditional on server capabilities
+				if client.resolved_capabilities.document_formatting then
+					vim.api.nvim_buf_set_keymap(
+						bufnr,
+						"n",
+						"<space>f",
+						"<cmd>lua vim.lsp.buf.formatting()<CR>",
+						{ noremap = true, silent = true }
+					)
+				elseif client.resolved_capabilities.document_range_formatting then
+					vim.api.nvim_buf_set_keymap(
+						bufnr,
+						"n",
+						"<space>f",
+						"<cmd>lua vim.lsp.buf.range_formatting()<CR>",
+						{ noremap = true, silent = true }
+					)
+				end
+			end
+
+			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
+			-- go install golang.org/x/tools/gopls@latest
+			lspconfig.gopls.setup({
+				on_attach = mix_attach,
+			})
+
+			-- local system_name
+			-- if vim.fn.has("mac") == 1 then
+			--      system_name = "macOS"
+			-- elseif vim.fn.has("unix") == 1 then
+			--      system_name = "Linux"
+			-- elseif vim.fn.has("win32") == 1 then
+			--      system_name = "Windows"
+			-- else
+			--      print("Unsupported system for sumneko")
+			-- end
+			-- -- local sumneko_root_path = "/home/huiwei/Workspace/service/lua-language-server"
+			-- -- local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+			-- -- local sumneko_binary = "/Users/huiwei/Workspace/service/lua-language-server/bin/lua-language-server"
+			-- local runtime_path = vim.split(package.path, ";")
+			-- table.insert(runtime_path, "lua/?.lua")
+			-- table.insert(runtime_path, "lua/?/init.lua")
+			-- lspconfig.sumneko_lua.setup({
+			--      cmd = {
+			--              sumneko_binary,
+			--              "-E",
+			--              sumneko_root_path .. "/main.lua",
+			--      },
+			--      settings = {
+			--              Lua = {
+			--                      runtime = {
+			--                              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+			--                              version = "LuaJIT",
+			--                              -- Setup your lua path
+			--                              path = runtime_path,
+			--                      },
+			--                      diagnostics = {
+			--                              -- Get the language server to recognize the `vim` global
+			--                              globals = { "vim" },
+			--                      },
+			--                      workspace = {
+			--                              -- Make the server aware of Neovim runtime files
+			--                              library = vim.api.nvim_get_runtime_file("", true),
+			--                      },
+			--                      -- Do not send telemetry data containing a randomized but unique identifier
+			--                      telemetry = {
+			--                              enable = false,
+			--                      },
+			--              },
+			--      },
+			-- })
+
+			-- rust
+			lspconfig.rls.setup({
+				unstable_features = true,
+				build_on_save = false,
+				all_features = true,
+			})
+		end,
+	})
+	-- https://github.com/glepnir/lspsaga.nvim
+	use({
+		"glepnir/lspsaga.nvim",
+		config = function()
+			local saga = require("lspsaga")
+			saga.init_lsp_saga({
+				use_saga_diagnostic_sign = false,
+				code_action_keys = {
+					quit = "q",
+					exec = "<CR>",
+				},
+				rename_action_keys = {
+					quit = "<esc><esc>",
+					exec = "<CR>", -- quit can be a table
+				},
+			})
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>rn",
+				"<cmd>lua require('lspsaga.rename').rename()<CR>",
+				{ noremap = true, silent = true }
+			)
+		end,
+	})
+	-- https://github.com/j-hui/fidget.nvim
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup({
+				text = {
+					spinner = "meter",
+				},
+			})
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
