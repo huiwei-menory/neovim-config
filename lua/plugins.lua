@@ -39,6 +39,10 @@ return require("packer").startup(function(use)
     end,
   }
 
+  -- 启动页
+  -- https://github.com/mhinz/vim-startify
+  use("mhinz/vim-startify")
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
