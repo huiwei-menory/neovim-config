@@ -123,6 +123,10 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- 相对行数
+	-- https://github.com/jeffkreeftmeijer/vim-numbertoggle
+	use("jeffkreeftmeijer/vim-numbertoggle")
+
 	-- 惯性滚动
 	-- https://github.com/yuttie/comfortable-motion.vim
 	use("yuttie/comfortable-motion.vim")
