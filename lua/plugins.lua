@@ -149,6 +149,11 @@ return require("packer").startup(function(use)
 	-- 快速去除尾部空格
 	use("bronson/vim-trailing-whitespace")
 
+	-- 快速区域选择
+	-- https://github.com/terryma/vim-expand-region
+	-- S+ S-
+	use("terryma/vim-expand-region")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
