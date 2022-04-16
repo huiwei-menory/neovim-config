@@ -561,6 +561,26 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- git
+	-- use({
+	-- 	"lewis6992/gitsigns.nvim",
+	-- 	requires = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		require("gitsigns").setup({
+	-- 			signs = {
+	-- 				add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
+	-- 				change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
+	-- 				delete = { hl = "DiffDelete", text = "_", numhl = "GitSignsDeleteNr" },
+	-- 				topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
+	-- 				changedelete = { hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr" },
+	-- 			},
+	-- 			numhl = false,
+	-- 			sign_priority = 7,
+	-- 			status_formatter = nil, -- Use default
+	-- 		})
+	-- 	end,
+	-- })
+
 	-- markdown
 	-- https://github.com/preservim/vim-markdown
 	--use({
