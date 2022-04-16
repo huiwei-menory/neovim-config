@@ -105,6 +105,9 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- 括号 引号 自动配对
+	use("jiangmiao/auto-pairs")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
