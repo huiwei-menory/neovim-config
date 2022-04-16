@@ -127,6 +127,25 @@ return require("packer").startup(function(use)
 	-- https://github.com/yuttie/comfortable-motion.vim
 	use("yuttie/comfortable-motion.vim")
 
+	-- 快速注释
+	use({
+		"preservim/nerdcommenter",
+		config = function()
+			vim.g.NERDCreateDefaultMappings = 1
+			vim.g.NERDSpaceDelims = 1
+			vim.g.NERDCompactSexyComs = 1
+			vim.g.NERDDefaultAlign = "left"
+			vim.g.NERDCommentEmptyLines = 1
+			vim.g.NERDTrimTrailingWhitespace = 1
+			vim.g.NERDToggleCheckAllLines = 1
+		end,
+	})
+	use("tpope/vim-commentary")
+	use({
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
