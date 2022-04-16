@@ -43,6 +43,34 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- 滚动条
+	-- use 'dstein64/nvim-scrollview'
+
+	-- git
+	use("tpope/vim-fugitive")
+	-- https://github.com/itchyny/vim-gitbranch
+	-- 这个插件提供了一个返回 git 分支名称的函数
+	use("itchyny/vim-gitbranch")
+	-- git
+	-- use({
+	-- 	"lewis6992/gitsigns.nvim",
+	-- 	requires = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		require("gitsigns").setup({
+	-- 			signs = {
+	-- 				add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
+	-- 				change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
+	-- 				delete = { hl = "DiffDelete", text = "_", numhl = "GitSignsDeleteNr" },
+	-- 				topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
+	-- 				changedelete = { hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr" },
+	-- 			},
+	-- 			numhl = false,
+	-- 			sign_priority = 7,
+	-- 			status_formatter = nil, -- Use default
+	-- 		})
+	-- 	end,
+	-- })
+
 	-- 启动页
 	-- https://github.com/mhinz/vim-startify
 	use("mhinz/vim-startify")
@@ -600,26 +628,6 @@ return require("packer").startup(function(use)
 			}
 		end,
 	})
-
-	-- git
-	-- use({
-	-- 	"lewis6992/gitsigns.nvim",
-	-- 	requires = { "nvim-lua/plenary.nvim" },
-	-- 	config = function()
-	-- 		require("gitsigns").setup({
-	-- 			signs = {
-	-- 				add = { hl = "DiffAdd", text = "│", numhl = "GitSignsAddNr" },
-	-- 				change = { hl = "DiffChange", text = "│", numhl = "GitSignsChangeNr" },
-	-- 				delete = { hl = "DiffDelete", text = "_", numhl = "GitSignsDeleteNr" },
-	-- 				topdelete = { hl = "DiffDelete", text = "‾", numhl = "GitSignsDeleteNr" },
-	-- 				changedelete = { hl = "DiffChange", text = "~", numhl = "GitSignsChangeNr" },
-	-- 			},
-	-- 			numhl = false,
-	-- 			sign_priority = 7,
-	-- 			status_formatter = nil, -- Use default
-	-- 		})
-	-- 	end,
-	-- })
 
 	-- markdown
 	-- https://github.com/preservim/vim-markdown
