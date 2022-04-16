@@ -6,6 +6,10 @@ return require("packer").startup(function(use)
 	-- https://github.com/tpope/vim-sensible
 	use("tpope/vim-sensible")
 
+	-- 文件类型图标
+	-- https://github.com/ryanoasis/vim-devicons
+	use("ryanoasis/vim-devicons")
+
 	-- 文件浏览器
 	-- https://github.com/kyazdani42/nvim-tree.lua
 	use({
