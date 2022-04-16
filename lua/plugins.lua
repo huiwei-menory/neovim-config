@@ -146,6 +146,9 @@ return require("packer").startup(function(use)
 		requires = { "nvim-treesitter/nvim-treesitter" },
 	})
 
+	-- 快速去除尾部空格
+	use("bronson/vim-trailing-whitespace")
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
