@@ -14,15 +14,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
   print("packer_bootstrap done")
 end
 
+vim.cmd [[autocmd BufWritePost general.lua source <afile> | PackerCompile]]
+vim.cmd [[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]]
+
 require("general")
-
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
-
-  -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
-  if packer_bootstrap then
-    require('packer').sync()
-  end
-end)
+require("plugins")
