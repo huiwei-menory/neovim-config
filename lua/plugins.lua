@@ -253,6 +253,16 @@ return require("packer").startup(function(use)
 	-- https://github.com/chr4/nginx.vim
 	use("chr4/nginx.vim")
 
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("trouble").setup({
+				position = "right",
+			})
+		end,
+	})
+
 	-- lsp
 	-- https://github.com/rrethy/vim-illuminate
 	use({
