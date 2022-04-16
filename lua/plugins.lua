@@ -531,6 +531,22 @@ return require("packer").startup(function(use)
 		end,
 	})
 
+	-- linter
+	use({
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("lint").linters_by_ft = {
+				-- markdown = { "vale" },
+				-- paru shellcheck for archlinux
+				sh = { "shellcheck" },
+				-- https://golangci-lint.run
+				-- https://golangci-lint.run/usage/install/#install-from-source
+				-- go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.45.2
+				go = { "golangcilint" },
+			}
+		end,
+	})
+
 	-- markdown
 	-- https://github.com/preservim/vim-markdown
 	--use({

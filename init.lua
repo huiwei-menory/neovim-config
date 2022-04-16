@@ -26,5 +26,8 @@ vim.g.mapleader = [[ ]]
 vim.cmd([[autocmd BufWritePost general.lua source <afile> | PackerCompile]])
 vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
 
+-- linter
+vim.cmd([[autocmd BufWritePost <buffer> lua require('lint').try_lint()]])
+
 require("general")
 require("plugins")
