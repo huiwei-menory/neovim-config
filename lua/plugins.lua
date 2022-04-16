@@ -112,6 +112,17 @@ return require("packer").startup(function(use)
 	-- https://github.com/chrisbra/changesPlugin
 	use("chrisbra/changesPlugin")
 
+	-- 快速跳转
+	-- https://github.com/phaazon/hop.nvim
+	use({
+		"phaazon/hop.nvim",
+		config = function()
+			require("hop").setup({ keys = "etovxqpdygfblzhckisuran", term_seq_bias = 0.5 })
+			vim.api.nvim_set_keymap("n", "s", "<cmd>lua require'hop'.hint_char2()<cr>", {})
+			vim.api.nvim_set_keymap("n", "S", "<cmd>lua require'hop'.hint_patterns()<cr>", {})
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if packer_bootstrap then
