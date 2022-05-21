@@ -293,12 +293,12 @@ return require("packer").startup(function(use)
 				'<cmd>lua require ("telescope.builtin").lsp_definitions()<cr>',
 				{ silent = true }
 			)
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>a",
-				'<cmd>lua require ("telescope.builtin").lsp_code_actions()<cr>',
-				{ silent = true }
-			)
+			-- vim.api.nvim_set_keymap(
+			-- 	"n",
+			-- 	"<leader>a",
+			-- 	"<cmd>lua require('telescope.builtin').lsp_code_actions({layout_strategy='cursor',layout_config={width=50, height = 10}})<cr>",
+			-- 	{ silent = true }
+			-- )
 			vim.api.nvim_set_keymap(
 				"n",
 				"<leader>ss",
@@ -390,6 +390,13 @@ return require("packer").startup(function(use)
 						{ noremap = true, silent = true }
 					)
 				end
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<leader>a",
+					"<cmd>lua vim.lsp.buf.code_action()<CR>",
+					{ noremap = true, silent = true }
+				)
 			end
 
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
@@ -474,6 +481,12 @@ return require("packer").startup(function(use)
 				"<cmd>lua require('lspsaga.rename').rename()<CR>",
 				{ noremap = true, silent = true }
 			)
+			-- vim.api.nvim_set_keymap(
+			-- 	"n",
+			-- 	"<leader>a",
+			-- 	"<cmd>lua require('lspsaga.codeaction').code_action()<CR>",
+			-- 	{ noremap = true, silent = true }
+			-- )
 		end,
 	})
 	-- https://github.com/j-hui/fidget.nvim
