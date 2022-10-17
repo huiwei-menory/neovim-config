@@ -397,6 +397,13 @@ return require("packer").startup(function(use)
 					"<cmd>lua vim.lsp.buf.code_action()<CR>",
 					{ noremap = true, silent = true }
 				)
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<leader>rn",
+					"<cmd>lua vim.lsp.buf.rename()<CR>",
+					{ noremap = true, silent = true }
+				)
 			end
 
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#gopls
@@ -457,36 +464,6 @@ return require("packer").startup(function(use)
 				build_on_save = false,
 				all_features = true,
 			})
-		end,
-	})
-	-- https://github.com/glepnir/lspsaga.nvim
-	use({
-		"glepnir/lspsaga.nvim",
-		config = function()
-			local saga = require("lspsaga")
-			saga.init_lsp_saga({
-				use_saga_diagnostic_sign = false,
-				code_action_keys = {
-					quit = "q",
-					exec = "<CR>",
-				},
-				rename_action_keys = {
-					quit = "<esc><esc>",
-					exec = "<CR>", -- quit can be a table
-				},
-			})
-			vim.api.nvim_set_keymap(
-				"n",
-				"<leader>rn",
-				"<cmd>lua require('lspsaga.rename').rename()<CR>",
-				{ noremap = true, silent = true }
-			)
-			-- vim.api.nvim_set_keymap(
-			-- 	"n",
-			-- 	"<leader>a",
-			-- 	"<cmd>lua require('lspsaga.codeaction').code_action()<CR>",
-			-- 	{ noremap = true, silent = true }
-			-- )
 		end,
 	})
 	-- https://github.com/j-hui/fidget.nvim
