@@ -19,4 +19,4 @@ vim.cmd("filetype plugin indent on")
 vim.cmd("syntax enable") -- 开启语法高亮功能
 vim.cmd("syntax on") -- 自动语法高亮
 
-vim.cmd("set number")
+-- vim.cmd("set number")
