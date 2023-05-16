@@ -21,9 +21,9 @@ return require("packer").startup(function(use)
 			vim.api.nvim_set_keymap("n", "<C-n>", "<cmd>NvimTreeToggle<cr>", {})
 			require("nvim-tree").setup({
 				-- open the tree when running this setup function
-				open_on_setup = true,
-				open_on_setup_file = true,
-				open_on_tab = true,
+				-- open_on_setup = true,
+				-- open_on_setup_file = true,
+				-- open_on_tab = true,
 				-- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
 				update_focused_file = {
 					-- enables the feature
@@ -201,7 +201,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- 快速去除尾部空格
-	use("bronson/vim-trailing-whitespace")
+	-- use("bronson/vim-trailing-whitespace")
 
 	-- 快速区域选择
 	-- https://github.com/terryma/vim-expand-region
@@ -373,23 +373,30 @@ return require("packer").startup(function(use)
 
 				--vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap=true, silent=true })
 				-- Set some keybinds conditional on server capabilities
-				if client.resolved_capabilities.document_formatting then
-					vim.api.nvim_buf_set_keymap(
-						bufnr,
-						"n",
-						"<space>f",
-						"<cmd>lua vim.lsp.buf.formatting()<CR>",
-						{ noremap = true, silent = true }
-					)
-				elseif client.resolved_capabilities.document_range_formatting then
-					vim.api.nvim_buf_set_keymap(
-						bufnr,
-						"n",
-						"<space>f",
-						"<cmd>lua vim.lsp.buf.range_formatting()<CR>",
-						{ noremap = true, silent = true }
-					)
-				end
+				-- if client.resolved_capabilities.document_formatting then
+				-- 	vim.api.nvim_buf_set_keymap(
+				-- 		bufnr,
+				-- 		"n",
+				-- 		"<space>f",
+				-- 		"<cmd>lua vim.lsp.buf.formatting()<CR>",
+				-- 		{ noremap = true, silent = true }
+				-- 	)
+				-- elseif client.resolved_capabilities.document_range_formatting then
+				-- 	vim.api.nvim_buf_set_keymap(
+				-- 		bufnr,
+				-- 		"n",
+				-- 		"<space>f",
+				-- 		"<cmd>lua vim.lsp.buf.range_formatting()<CR>",
+				-- 		{ noremap = true, silent = true }
+				-- 	)
+				-- end
+				vim.api.nvim_buf_set_keymap(
+					bufnr,
+					"n",
+					"<space>f",
+					"<cmd>lua vim.lsp.buf.format({ async = true })<CR>",
+					{ noremap = true, silent = true }
+				)
 				vim.api.nvim_buf_set_keymap(
 					bufnr,
 					"n",
@@ -636,6 +643,17 @@ return require("packer").startup(function(use)
 			}
 		end,
 	})
+
+	-- use({
+	-- 	"jackMort/ChatGPT.nvim",
+	-- 	config = function()
+	-- 		require("chatgpt").setup({})
+	-- 	end,
+	-- 	requires = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- })
 
 	-- markdown
 	-- https://github.com/preservim/vim-markdown
