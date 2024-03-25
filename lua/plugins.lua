@@ -277,6 +277,12 @@ return require("packer").startup(function(use)
 			)
 			vim.api.nvim_set_keymap(
 				"n",
+				"gi",
+				'<cmd>lua require ("telescope.builtin").lsp_implementations()<cr>',
+				{ silent = true }
+			)
+			vim.api.nvim_set_keymap(
+				"n",
 				"<leader><leader><leader>",
 				'<cmd>lua require ("telescope.builtin").live_grep()<cr>',
 				{}
